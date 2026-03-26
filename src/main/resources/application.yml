@@ -19,5 +19,5 @@ server:
   port: 8080
 
 jwt:
-  secret: taskflow-secret-key-muito-longa-para-256-bits-minimo-exigido
+  secret: dGFza2Zsb3ctc2VjcmV0LWtleS1tdWl0by1sb25nYS1wYXJhLTI1Ni1iaXRzLW1pbmltby1leGlnaWRv
   expiration: 86400000  # 24h em ms
