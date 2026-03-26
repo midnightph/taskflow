@@ -23,5 +23,7 @@ public class GlobalExceptionHandler {
         ErrorResponse error = new ErrorResponse(409, ex.getMessage(), LocalDateTime.now());
         return ResponseEntity.status(HttpStatus.CONFLICT).body(error);
     }
+
+    
     
 }
