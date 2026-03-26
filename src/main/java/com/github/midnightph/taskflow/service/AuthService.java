@@ -37,7 +37,7 @@ public class AuthService {
                 .build();
         userRepository.save(user);
         return new AuthResponse(
-                jwtService.generateToken(user.getEmail()),
+                jwtService.generateToken(user.getId()),
                 user.getName(),
                 user.getEmail());
     }
@@ -49,7 +49,7 @@ public class AuthService {
                 new UsernamePasswordAuthenticationToken(request.email(), request.password()));
 
         return new AuthResponse(
-                jwtService.generateToken(request.email()),
+                jwtService.generateToken(user.getId()),
                 user.getName(),
                 user.getEmail());
     }

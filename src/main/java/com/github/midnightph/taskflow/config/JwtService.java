@@ -18,9 +18,9 @@ public class JwtService {
     @Value("${jwt.secret}")
     private String secret;
 
-    public String generateToken(String email) {
+    public String generateToken(Long userId) {
         return Jwts.builder()
-                .subject(email)
+                .subject(String.valueOf(userId))
                 .issuedAt(new Date())
                 .expiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60 * 24))
                 .signWith(getSignInKey(), Jwts.SIG.HS256)
@@ -41,9 +41,10 @@ public class JwtService {
         }
     }
 
-    public String extractEmail(String token) {
-        return Jwts.parser().verifyWith((SecretKey) getSignInKey()).build().parseSignedClaims(token).getPayload()
-                .getSubject();
+    public Long extractUserId(String token) {
+        String subject = Jwts.parser().verifyWith(getSignInKey()).build()
+                .parseSignedClaims(token).getPayload().getSubject();
+        return Long.parseLong(subject);
     }
 
 }
