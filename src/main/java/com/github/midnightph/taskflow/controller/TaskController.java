@@ -27,7 +27,7 @@ public class TaskController {
 
     private final TaskService taskService;
     
-    @GetMapping("/")
+    @GetMapping()
     public ResponseEntity<List<TaskResponse>> getTasks() {
         Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return ResponseEntity.ok(taskService.getAllTasks(userId));
@@ -40,7 +40,7 @@ public class TaskController {
         return ResponseEntity.ok(taskService.getTaskById(userId, taskId));
     }
 
-    @PostMapping("/")
+    @PostMapping()
     public ResponseEntity<TaskResponse> createTask(@RequestBody TaskRequest taskRequest) {
         Long userId = (Long) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return ResponseEntity.ok(taskService.createTask(userId, taskRequest));
